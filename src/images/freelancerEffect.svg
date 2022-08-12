@@ -1,0 +1,60 @@
+<svg viewBox="0 0 36 36">
+  <path id="wingBlur" d="M12.7,18.2L6,11.1l10.2,0.6L12.7,18.2z M15.7,11.1l-5.6-2l0.9,1.7L15.7,11.1z" />
+  <path id="bodyBlur" d="M13.3,19.6l2.7,2.9l-4.5,4.4L13.3,19.6z M13.1,18.6l3.3,3.5l3.6-3.6l1.1-6.7l-4.4-0.2L13.1,18.6z M19.4,9.1
+                          L17,11.2l4,0.2L19.4,9.1z M20.1,9.1l1.6,2.3L30,9.1H20.1z"/>
+  <path id="bg" d="M20.1,9.1l1.6,2.3L30,9.1 M11.5,26.9l4.5-4.4l-2.7-2.9 M19.4,9.1L17,11.2l4,0.2 M10.1,9.1l0.9,1.7l4.7,0.3
+                    M12.7,18.2l3.5-6.5L6,11.1 M13.1,18.6l3.3,3.5l3.6-3.6l1.1-6.7l-4.4-0.2L13.1,18.6z"/>
+  <g>
+    <polygon class='f' id="f0" points="20.1,9.1 21.7,11.4 30,9.1" />
+    <polygon class='f' id="f1" points="19.4,9.1 17,11.2 21,11.4" />
+    <polygon class='f' id="f2" points="13.1,18.6 16.4,22.1 20,18.5 21.1,11.8 16.7,11.6" />
+    <polygon class='f' id="f3" points="11.5,26.9 16,22.5 13.3,19.6" />
+    <polygon class='f' id="f4" points="15.7,11.1 10.1,9.1 11,10.8" />
+    <polygon class='f' id="f4" points="16.2,11.7 6,11.1 12.7,18.2" />
+  </g>
+  <style type="text/css">
+      #bodyBlur {
+        fill:#23BCCC;
+        filter: blur(0.5px);
+      }
+      #wingBlur {
+        fill: #fde047;;
+        filter: blur(0.5px);
+      }
+      #bg {
+        fill:#222;
+        // animation: blur 2s ease-in-out infinite;
+      }
+      .f {
+        fill: transparent;
+      }
+      #f0 {
+        animation: fill1 1s ease 0s infinite;
+      }
+      #f1 {
+        animation: fill1 1s ease 0.15s infinite;
+      }
+      #f2 {
+        animation: fill1 1s ease 0.3s infinite;
+      }
+      #f3 {
+        animation: fill1 1s ease 0.45s infinite;
+      }
+      #f4 {
+        animation: fill2 1s ease 0.6s infinite;
+      }
+
+      @keyframes fill1 {
+        50% {
+          fill: #23BCCC;
+          // filter: blur(0.5px);
+        }
+      }
+      @keyframes fill2 {
+        50% {
+          fill: #fde047;
+          // filter: blur(0.5px);
+        }
+      }
+  </style>
+</svg>

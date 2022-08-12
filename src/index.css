@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+
+  ::-webkit-scrollbar {
+    width: 0.4em;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 130, 0.5);
+    border-radius: 1em;
+  }
+
+  .animation-delay-5s {
+    animation-delay: 5s;
+  }
+
+  .animation-delay-10s {
+    animation-delay: 10s;
+  }
+
+  .animation-delay-15s {
+    animation-delay: 15s;
+  }
+}
+
+.leftout {
+  left: -50rem;
+}
+
+.rightout {
+  right: -50rem;
+}
+
+.testStyle {
+  @apply py-2 px-2 text-sm
+}
+
+@layer base {
+
+  /*******************************************************************************
+    customized style abbreviation naming rules:
+    -element: 't' - text, 'b' - background, 'r' - outline ring
+              'pl' - placeholder, 'btn' - button, 'bdr' - border
+    -state:   'h' - hovered, 'f' - focused, 'sel' - selected
+    *******************************************************************************/
+  [color-theme="light"] {
+    /****** element text major/minor colors */
+    --color-major-t:              theme('colors.slate.800');
+    --color-major-ht:             theme('colors.cyan.500');
+    --color-major2-t:             theme('colors.slate.700');
+    --color-minor-t:              theme('colors.slate.500');
+    --color-minor2-t:             theme('colors.slate.400');
+    --color-minor3-t:             theme('colors.slate.300');
+    --color-heading-t:            theme('colors.slate.100');
+    --color-heading2-t:           theme('colors.slate.200');
+
+    /****** element background major/minor colors */
+    --color-major-b:              theme('colors.slate.100');
+    --color-minor-b:              theme('colors.slate.200');
+    --color-minor2-b:             theme('colors.slate.300');
+    --color-minor3-b:             theme('colors.slate.400');
+    --color-minor4-b:             theme('colors.slate.500');
+    --color-minor5-b:             theme('colors.slate.700');
+
+    /****** message bubble */
+    --color-msg-b:                theme('colors.slate.400');
+    --color-msg-err:              theme('colors.rose.300');
+
+    /****** background gradient */
+    --color-bgr-from:             theme('colors.blue.700');
+    --color-bgr-to:               theme('colors.cyan.500');
+
+    --color-btn-bgr-from:         theme('colors.blue.300');
+    --color-btn-bgr-to:           theme('colors.cyan.500');
+    --color-btn2-bgr-from:        theme('colors.yellow.500');
+    --color-btn2-bgr-to:          theme('colors.cyan.500');
+
+    /***** nav, nav border, drawer, drawer border */
+    --color-nav-t:                theme('colors.white');
+    --color-nav-ht:               theme('colors.slate.900');
+    --color-nav-bdr:              theme('colors.slate.300');
+
+    --color-drawer-t:             #194F82;         /* blue */
+    --color-drawer-b:             theme('colors.cyan.400');   /*#ffc10d;*/ /* yellow */
+    --color-drawer-ht:            theme('colors.slate.100');
+    --color-drawer-hb:            theme('colors.cyan.200');
+
+    /****** highlight text */
+    --color-hlight-t:             theme('colors.slate.700');
+    --color-hlight-b:             theme('colors.yellow.500');
+
+    /****** button */
+    --color-btn-t:                theme('colors.white');
+    --color-btn-muted-t:          theme('colors.slate.600');
+    --color-btn-muted-ht:         theme('colors.slate.900');
+
+    --color-btn-b:                theme('colors.cyan.500');
+    --color-btn-muted-b:          theme('colors.slate.100');
+    --color-btn-muted-hb:         theme('colors.slate.100');
+    --color-btn-muted-h2b:        theme('colors.slate.50');
+
+    --color-btn-bdr:              theme('colors.slate.100');
+    --color-btn-bdr-disabled:     theme('colors.slate.500');
+
+    /****** tab */
+    --color-tab-t:                theme('colors.cyan.400');
+    --color-tab-muted-t:          theme('colors.slate.500');
+    --color-tab-muted-ht:         theme('colors.cyan.500');
+
+    /****** form */
+    --color-form-t:               theme('colors.slate.900');
+    --color-form-b:               theme('colors.slate.50');
+  
+    /****** market specific */
+    --color-bullish-t:            theme('colors.green.600');
+    --color-bearish-t:            theme('colors.red.600');
+    --color-bullish-weak-t:       theme('colors.green.500');
+    --color-bearish-weak-t:       theme('colors.red.500');
+    --color-neutral-t:            theme('colors.slate.700');
+
+    --color-bullish-b:            theme('colors.green.300');
+    --color-bearish-b:            theme('colors.red.300');
+
+    --color-btn-bullish-b:        theme('colors.green.600');
+    --color-btn-bearish-b:        theme('colors.red.400');
+
+    /****** border colors */
+    --color-strong-bdr:           theme('colors.gray.900');
+    --color-weak-bdr:             #bcc3cf; /*theme('colors.gray.400');*/
+    --color-weak2-bdr:            theme('colors.gray.300');
+
+    --color-bdr-h:                theme('colors.cyan.500');
+    --color-bdr-f:                theme('colors.cyan.500');
+    --color-bdr-r:                theme('colors.cyan.500');
+
+    --color-bdr-err:              theme('colors.red.400');
+
+    /****** placeholder colors */
+    --color-pl-t:                 theme('colors.gray.400');
+
+    /****** icons color */
+    --color-icon-norm-t:          theme('colors.slate.500');
+    --color-icon-sel-t:           theme('colors.cyan.500');
+  }
+
+  [color-theme="dark"] {
+    /****** element text major/minor colors */
+    --color-major-t:              theme('colors.slate.200');
+    --color-major-ht:             theme('colors.cyan.400');
+    --color-major2-t:             theme('colors.slate.300');
+    --color-minor-t:              theme('colors.slate.400');
+    --color-minor2-t:             theme('colors.slate.600');
+    --color-minor3-t:             theme('colors.slate.700');
+    --color-heading-t:            theme('colors.slate.400');
+    --color-heading2-t:           theme('colors.slate.300');
+
+    /****** element background major/minor colors */
+    --color-major-b:              theme('colors.slate.800');
+    --color-minor-b:              theme('colors.slate.700');
+    --color-minor2-b:             theme('colors.slate.600');
+    --color-minor3-b:             theme('colors.slate.500');
+    --color-minor4-b:             theme('colors.slate.400');
+    --color-minor5-b:             theme('colors.slate.200');
+
+    /****** message bubble */
+    --color-msg-b:                theme('colors.slate.600');
+    --color-msg-err:              theme('colors.rose.900');
+
+    /****** background gradient */
+    --color-bgr-from:             theme('colors.gray.900');
+    --color-bgr-to:               theme('colors.gray.800');
+
+    --color-btn-bgr-from:         theme('colors.blue.900');
+    --color-btn-bgr-to:           theme('colors.cyan.700');
+    --color-btn2-bgr-from:        theme('colors.yellow.700');
+    --color-btn2-bgr-to:          theme('colors.cyan.700');
+
+    /***** nav, nav border, drawer, drawer border */
+    --color-nav-t:                theme('colors.slate.400');
+    --color-nav-ht:               theme('colors.cyan.400');
+    --color-nav-bdr:              theme('colors.slate.600');
+
+    --color-drawer-t:             theme('colors.slate.700');
+    --color-drawer-b:             theme('colors.cyan.600');
+    --color-drawer-ht:            theme('colors.slate.200');
+    --color-drawer-hb:            theme('colors.cyan.500');
+
+    /****** highlight text */
+    --color-hlight-t:             theme('colors.slate.700');
+    --color-hlight-b:             theme('colors.yellow.600');
+
+    /****** button */
+    --color-btn-t:                theme('colors.slate.200');
+    --color-btn-muted-t:          theme('colors.slate.400');
+    --color-btn-muted-ht:         theme('colors.slate.50');
+
+    --color-btn-b:                theme('colors.cyan.600');
+    --color-btn-muted-b:          theme('colors.slate.700');
+    --color-btn-muted-hb:         theme('colors.slate.700');
+    --color-btn-muted-h2b:        theme('colors.slate.800');
+
+    --color-btn-bdr:              theme('colors.slate.400');
+    --color-btn-bdr-disabled:     theme('colors.slate.500');
+  
+    /****** tab */
+    --color-tab-t:                theme('colors.cyan.400');
+    --color-tab-muted-t:          theme('colors.slate.500');
+    --color-tab-muted-ht:         theme('colors.cyan.500');
+  
+    /****** form */
+    --color-form-t:               theme('colors.white');
+    --color-form-b:               theme('colors.slate.700');
+  
+    /****** market specific */
+    --color-bullish-t:            theme('colors.green.400');
+    --color-bearish-t:            theme('colors.red.400');
+    --color-bullish-weak-t:       theme('colors.green.500');
+    --color-bearish-weak-t:       theme('colors.red.500');
+    --color-neutral-t:            theme('colors.slate.100');
+
+    --color-bullish-b:            theme('colors.green.900');
+    --color-bearish-b:            theme('colors.red.900');
+
+    --color-btn-bullish-b:        theme('colors.green.600');/* #4b7; */ 
+    --color-btn-bearish-b:        theme('colors.red.500');  /* #e56; */
+
+    /****** border colors */
+    --color-strong-bdr:           theme('colors.gray.300');
+    --color-weak-bdr:             theme('colors.gray.500');
+    --color-weak2-bdr:            theme('colors.gray.700');
+
+    --color-bdr-h:                theme('colors.cyan.600');
+    --color-bdr-f:                theme('colors.cyan.600');
+    --color-bdr-r:                theme('colors.cyan.600');
+
+    --color-bdr-err:              theme('colors.red.400');
+
+    /****** placeholder colors */
+    --color-pl-t:                 theme('colors.gray.400');
+
+    /****** icons color */
+    --color-icon-norm-t:          theme('colors.slate.400');
+    --color-icon-sel-t:           theme('colors.cyan.400');
+  }
+}
