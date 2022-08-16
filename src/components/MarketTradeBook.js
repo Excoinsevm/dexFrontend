@@ -21,7 +21,7 @@ const MarketTradeBook = ({ tradePair, base, quote }) => {
   const [pDecimals, qDecimals] = [2, 4]
   const [trades, setTrades] = useState([])
   const [currentAccountTrades, setCurrentAccountTrades] = useState([])
-  const [recentTradeId, setRecentTradeId] = useState(false)
+  const [recentTradeId, setRecentTradeId] = useState(-1)
 
   useEffect(() => {
     scheduleMarketTradesFetch(base, quote, setRecentTradeId)

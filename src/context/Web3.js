@@ -558,7 +558,7 @@ class Dex {
       if (excuted && this._fetchTradeScheduleArgs.base && this._fetchTradeCallback) {
         const trades = this.state.marketTrades[`${base}-${quote}`]
         // console.log(`trades for ${base}-${quote}`, trades.at(-1))
-        this._fetchTradeCallback(trades.length > 0 ? trades.at(-1).tradeId : '0')
+        this._fetchTradeCallback(trades.length > 0 ? trades.at(-1).tradeId : -1)
       }
     }
     func()
