@@ -49,19 +49,19 @@ const AdminOperation = ({ operation, onProgressUpdate }) => {
   )
 
   const operationIndicator = () => (
-    currentAccount &&
-    <div className='flex flex-col justify-center items-center w-full py-2'>
-      <div className='text-sm text-c-minor pt-3'>
-        {addToken && 'add/list token to dex' || approveQuote && 'approve token as quote'}
-      </div>
-      <div className='flex flex-row justify-center items-center w-full py-3 text-sm'>
-        {walletAccount()}
-        <div className={`pl-2 pr-3 py-1 ml-4 border border-c-weak rounded-l-lg rounded-r-3xl
-                         text-left whitespace-nowrap text-sm text-c-major select-none bg-c-btn`}>
-          {addToken && 'add token' || approveQuote && 'approve quote'}
+    (currentAccount &&
+      <div className='flex flex-col justify-center items-center w-full py-2'>
+        <div className='text-sm text-c-minor pt-3'>
+          {(addToken && 'add/list token to dex') || (approveQuote && 'approve token as quote')}
         </div>
-      </div>
-    </div>
+        <div className='flex flex-row justify-center items-center w-full py-3 text-sm'>
+          {walletAccount()}
+          <div className={`pl-2 pr-3 py-1 ml-4 border border-c-weak rounded-l-lg rounded-r-3xl
+                         text-left whitespace-nowrap text-sm text-c-major select-none bg-c-btn`}>
+            {(addToken && 'add token') || (approveQuote && 'approve quote')}
+          </div>
+        </div>
+      </div>)
     ||
     <div className='flex flex-row justify-center items-center w-full mt-5 pb-8'>
       <WarningIcon className='w-6 h-6 text-c-minor' />

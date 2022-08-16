@@ -4,7 +4,7 @@ import { useThemeContext } from '../context/ThemeContext'
 import { useOrderPriceContext } from '../context/OrderPriceContext'
 // import { useWeb3Context } from '../context/Web3Context'
 import { ReactComponent as ArrowUp } from '../images/ArrowUp.svg'
-import { web3Methods } from '../context/Web3'
+// import { web3Methods } from '../context/Web3'
 import { useWeb3Context } from '../context/Web3Context'
 
 const MarketOrderBook = ({ tradePair, base, quote }) => {
@@ -149,7 +149,7 @@ const MarketOrderBook = ({ tradePair, base, quote }) => {
     const bdrColor = active ? (darkTheme ? '#ddd' : '#111') : (darkTheme ? '#777' : '#333')
     const bgColor = darkTheme ? '#1e293b' : '#f1f5f9'
     const color1 = side === 'bids' ? bidsColor : askscolor
-    const color2 = side === 'both' ? bdrColor : color1
+    // const color2 = side === 'both' ? bdrColor : color1
     const color3 = side === 'asks' ? askscolor : bidsColor
     return (
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">

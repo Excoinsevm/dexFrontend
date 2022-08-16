@@ -62,7 +62,7 @@ const AdminPage = () => {
 
   // -------------------------------------------------
   // ------ add token to dex
-  const delay = ms => new Promise(res => setTimeout(res, ms));
+  // const delay = ms => new Promise(res => setTimeout(res, ms));
 
   const loadingSpinner = () => (
     <LoadingSpinner className='h-5 w-5 mr-3' />
@@ -128,7 +128,7 @@ const AdminPage = () => {
           Token Symbol
         </div>
         <div className='mr-2 text-sm text-c-major-h'>
-          {loadingSymbol && loadingSpinner() || symbol}
+          {(loadingSymbol && loadingSpinner()) || symbol}
         </div>
       </div>
       <Button
@@ -198,7 +198,7 @@ const AdminPage = () => {
   return (
     <>
       <div className='mt-10'>
-        {isAdmin && adminContent() || nonAdminContent()}
+        {(isAdmin && adminContent()) || nonAdminContent()}
       </div>
       {adminOperation && <AdminOperationModal operation={adminOperation} openct={adminOperationOpenCount} />}
     </>

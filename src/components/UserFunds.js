@@ -111,8 +111,7 @@ const UserFunds = ({ base, quote, hideSmall, hideOthers }) => {
     headerContainer: 'flex flex-row justify-between my-1 text-xs text-c-minor border-b border-c-weak2',
     headerArrowIcon: 'w-[0.42rem] h-[1rem]',
     dataContainer: 'max-h-[260px] overflow-y-scroll',
-    rowContainer: 'flex flex-row justify-between pb-0.5 text-xs text-c-major bg-c-major \
-                   hover:bg-c-minor',
+    rowContainer: 'flex flex-row justify-between pb-0.5 text-xs text-c-major bg-c-major hover:bg-c-minor',
     noRecord: 'py-4 text-center text-xs text-c-minor bg-c-major',
     noRecordAlt: (
       !currentAccount && <WalletConnectReminder onClick={connect} />

@@ -2,7 +2,7 @@ import dexjson from '../contracts/Dex.json'
 import erc20json from '../contracts/ERC20Abi.json'
 import detectEthereumProvider from '@metamask/detect-provider'
 import { ethers } from 'ethers'
-import { datetimeStr } from '../common/Utils'
+// import { datetimeStr } from '../common/Utils'
 import { useState } from 'react'
 
 // --------------------------------------------------------------------------------
@@ -157,7 +157,6 @@ class Dex {
       marketTrades: {},
       marketTradePairBrief: {},
       marketTradeQuoteColBrief: {},
-      currentAccountTrades: {},
       txResponse: false
     }
     this.dexContract = dexContract
@@ -1123,7 +1122,8 @@ export function web3Methods() {
 
 export function createWeb3() {
   const dex = Dex.sharedInstance()
-  const wallet = Wallet.sharedInstance(dex.updateCurrentAccount)
+  Wallet.sharedInstance(dex.updateCurrentAccount)
+  // const wallet = Wallet.sharedInstance(dex.updateCurrentAccount)
   return {
     initWeb3: initWeb3,
     web3Methods: web3Methods(),

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ReactComponent as LogoAnimate } from '../images/logoAnimate.svg'
+// import { ReactComponent as LogoAnimate } from '../images/logoAnimate.svg'
 import LoadingAnimation from './LoadingAnimation'
 import { MdError as WarningIcon } from 'react-icons/md'
 import { BsExclamation as ExclamationIcon } from 'react-icons/bs'

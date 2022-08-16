@@ -11,12 +11,12 @@ import { ReactComponent as AdminWalletIcon } from '../images/AdminWallet.svg'
 import { Link } from 'react-router-dom'
 import { AppNav, AppNavAdmin } from '../pages/AppNav'
 import ThemeSwitch from './ThemeSwitch'
-import { useThemeContext } from '../context/ThemeContext'
+// import { useThemeContext } from '../context/ThemeContext'
 import { useWeb3Context } from '../context/Web3Context'
 
 const TopBar = ({ openSideBar }) => {
 
-  const { colorTheme } = useThemeContext()
+  // const { colorTheme } = useThemeContext()
   const {
     walletInstalled,
     connect,

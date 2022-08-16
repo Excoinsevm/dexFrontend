@@ -63,25 +63,25 @@ const OrderOperation = ({ order, onProgressUpdate }) => {
   }
 
   const operationIndicator = () => (
-    currentAccount &&
-    <div className='flex flex-col justify-center items-center w-full py-3 pb-5 border-b border-c-weak2'>
-      {walletAccount()}
-      <div className='flex flex-row justify-center items-center w-full mt-3'>
-        <div className={`pl-2 pr-3 py-0.5 mr-1 text-left border border-c-weak rounded-l-lg rounded-r-3xl
+    (currentAccount &&
+      <div className='flex flex-col justify-center items-center w-full py-3 pb-5 border-b border-c-weak2'>
+        {walletAccount()}
+        <div className='flex flex-row justify-center items-center w-full mt-3'>
+          <div className={`pl-2 pr-3 py-0.5 mr-1 text-left border border-c-weak rounded-l-lg rounded-r-3xl
                          text-sm text-c-major whitespace-nowrap select-none ${tagColor(order)}`}>
-          {tagText(order)[0]}
+            {tagText(order)[0]}
+          </div>
+          <div className='w-[5.6rem]'>
+            {tokenRender(order.base)}
+          </div>
+          <div className='w-[2.2rem] text-center text-c-minor select-none'>
+            {tagText(order)[1]}
+          </div>
+          <div className='w-[5.6rem]'>
+            {tokenRender(order.quote)}
+          </div>
         </div>
-        <div className='w-[5.6rem]'>
-          {tokenRender(order.base)}
-        </div>
-        <div className='w-[2.2rem] text-center text-c-minor select-none'>
-          {tagText(order)[1]}
-        </div>
-        <div className='w-[5.6rem]'>
-          {tokenRender(order.quote)}
-        </div>
-      </div>
-    </div>
+      </div>)
     ||
     <div className='flex flex-row justify-center items-center w-full mt-5 pb-8 border-b border-c-weak2'>
       <WarningIcon className='w-6 h-6 text-c-minor' />

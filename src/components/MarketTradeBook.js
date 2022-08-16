@@ -99,8 +99,7 @@ const MarketTradeBook = ({ tradePair, base, quote }) => {
         {
           (tab === 'my' && tradeList.length === 0) &&
           (
-            currentAccount
-            && <div className='text-center text-xs text-c-minor mt-4'>No trades</div>
+            (currentAccount && <div className='text-center text-xs text-c-minor mt-4'>No trades</div>)
             || <WalletConnectReminder onClick={connect} className='mt-4 text-xs text-c-minor' />
           )
         }

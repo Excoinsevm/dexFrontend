@@ -18,13 +18,16 @@ const UserTradeHistory = ({ tradePair, base, quote, hideOthers }) => {
 
   // ------ state data
   const [data, setData] = useState([])
-  useEffect(async () => {
-    if (currentAccount) {
+  useEffect(() => {
+    const fetchAndSet = async () => {
       const _data = await filterCurrentAccountAllTrades()
       if (hideOthers)
         setData(_data.filter(o => o.base === base && o.quote === quote))
       else
         setData(_data)
+    }
+    if (currentAccount) {
+      fetchAndSet()
     } else {
       setData([])
     }

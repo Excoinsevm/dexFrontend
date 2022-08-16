@@ -13,7 +13,7 @@ const TickerSymbol = ({ data }) => {
           {data.base} <span className='text-c-minor text-sm'>/ {data.quote}</span>
         </div>
         <div className='text-sm text-c-minor mt-0.5 hover:text-c-major-h'>
-          <a href={data.tickerInfoLink} target='_blank' >{data.tickerInfo}</a>
+          <a href={data.tickerInfoLink} target='_blank' rel='noreferrer' >{data.tickerInfo}</a>
         </div>
       </div>
     </div>

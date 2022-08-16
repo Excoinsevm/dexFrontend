@@ -6,7 +6,7 @@ import Table from './Table'
 import Dropdown from './Dropdown'
 import { BiTrash as DeleteIcon } from 'react-icons/bi'
 import WalletConnectReminder from './WalletConnectReminder'
-import { web3Methods } from '../context/Web3'
+// import { web3Methods } from '../context/Web3'
 import { useWeb3Context } from '../context/Web3Context'
 import TradeOrderModal from './TradeOrderModal'
 
@@ -24,24 +24,24 @@ const UserOpenOrder = ({ tradePair, base, quote, hideOthers }) => {
   // ]
   // const { balance, fetchAllMarketOrders, loadBalance } = useWeb3Context()
 
-  const debug = () => (
-    <div className='flex flex-col justify-center items-center text-c-minor text-lg mb-2'>
-      <button className='text-c-major rounded-full bg-yellow-800 hover:bg-yellow-600 w-24 my-1'
-        onClick={async () => {
-          // filterCurrentAccountAllOrders()
-          const _data = await filterCurrentAccountAllOrders()
-          if (hideOthers)
-            setData(_data.filter(o => o.base === base && o.quote === quote))
-          else
-            setData(_data)
-        }}
-      >
-        orders</button>
-      {/* <button className='text-c-major rounded-full bg-yellow-800 hover:bg-yellow-600 w-24 my-1'
-        onClick={() => loadBalance()}>
-        balance</button> */}
-    </div>
-  )
+  // const debug = () => (
+  //   <div className='flex flex-col justify-center items-center text-c-minor text-lg mb-2'>
+  //     <button className='text-c-major rounded-full bg-yellow-800 hover:bg-yellow-600 w-24 my-1'
+  //       onClick={async () => {
+  //         // filterCurrentAccountAllOrders()
+  //         const _data = await filterCurrentAccountAllOrders()
+  //         if (hideOthers)
+  //           setData(_data.filter(o => o.base === base && o.quote === quote))
+  //         else
+  //           setData(_data)
+  //       }}
+  //     >
+  //       orders</button>
+  //     {/* <button className='text-c-major rounded-full bg-yellow-800 hover:bg-yellow-600 w-24 my-1'
+  //       onClick={() => loadBalance()}>
+  //       balance</button> */}
+  //   </div>
+  // )
   // ============ debug end
 
 
@@ -64,14 +64,17 @@ const UserOpenOrder = ({ tradePair, base, quote, hideOthers }) => {
 
   const [data, setData] = useState([])
 
-  useEffect(async () => {
-    if (currentAccount) {
+  useEffect(() => {
+    const fetchAndSet = async () => {
       const _data = await filterCurrentAccountAllOrders()
       if (hideOthers)
         setData(_data.filter(o => o.base === base && o.quote === quote))
       else
         setData(_data)
       // console.log('currentAccountOrders --->', _data)
+    }
+    if (currentAccount) {
+      fetchAndSet()
     } else {
       setData([])
     }

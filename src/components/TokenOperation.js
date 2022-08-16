@@ -71,20 +71,20 @@ const TokenOperation = ({ type, token, onProgressUpdate }) => {
   const logo = () => <LogoIcon className='w-7 h-7' />
 
   const tokenFlowIndicator = () => (
-    currentAccount &&
-    <div className='flex flex-col justify-center items-center w-full py-2'>
-      <div className='text-sm text-c-minor pt-3'>
-        {isWithdraw && 'withdraw token to your wallet' || 'deposit token to the dex'}
-      </div>
-      <div className='flex flex-row justify-center items-center w-full py-3 text-sm'>
-        {isWithdraw && logo() || wallet()}
-        <ArrowIcon
-          className={`w-7 h-7 mx-6 text-c-icon-sel ${isWithdraw ? '-rotate-[135deg]' : '-rotate-45'}`}
-        />
-        {isWithdraw && wallet() || logo()}
+    (currentAccount &&
+      <div className='flex flex-col justify-center items-center w-full py-2'>
+        <div className='text-sm text-c-minor pt-3'>
+          {(isWithdraw && 'withdraw token to your wallet') || 'deposit token to the dex'}
+        </div>
+        <div className='flex flex-row justify-center items-center w-full py-3 text-sm'>
+          {(isWithdraw && logo()) || wallet()}
+          <ArrowIcon
+            className={`w-7 h-7 mx-6 text-c-icon-sel ${isWithdraw ? '-rotate-[135deg]' : '-rotate-45'}`}
+          />
+          {(isWithdraw && wallet()) || logo()}
 
-      </div>
-    </div>
+        </div>
+      </div>)
     ||
     <div className='flex flex-row justify-center items-center w-full mt-5 pb-8'>
       <WarningIcon className='w-6 h-6 text-c-minor' />
@@ -95,7 +95,7 @@ const TokenOperation = ({ type, token, onProgressUpdate }) => {
   const availableFund = () => (
     <div className='flex flex-row justify-between items-center w-full px-3 mb-1 text-xs text-c-minor select-none'>
       <div className='flex flex-row justify-start items-center w-full mr-2'>
-        {isWithdraw && <LogoIcon className='w-5 h-5 mr-1' /> || <WalletIcon className='w-5 h-5 mr-1' />}
+        {(isWithdraw && <LogoIcon className='w-5 h-5 mr-1' />) || <WalletIcon className='w-5 h-5 mr-1' />}
         <span>Available</span>
       </div>
       <span className='text-c-major2 whitespace-nowrap'>{floatStr(fundAvbl)} {selectedToken}</span>

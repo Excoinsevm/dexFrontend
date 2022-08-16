@@ -5,7 +5,7 @@ import { ReactComponent as Arrow } from '../images/ArrowDown.svg'
 import { IoSearchSharp as SearchIcon } from 'react-icons/io5'
 import { IoMdClose as CloseIcon } from 'react-icons/io'
 import { FaStar as StarIcon } from 'react-icons/fa'
-import { AiOutlineConsoleSql } from 'react-icons/ai'
+// import { AiOutlineConsoleSql } from 'react-icons/ai'
 
 const TabTable = ({
   config, sortColFunc, tabNames,
