@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { createChart, CrosshairMode } from 'lightweight-charts'
-import { priceData } from "./testdata/priceData";
-import { volumeData } from "./testdata/volumeData";
+// import { priceData } from "./testdata/priceData";
+// import { volumeData } from "./testdata/volumeData";
 import { AppConsts } from '../Consts'
 import { useThemeContext } from '../context/ThemeContext'
 
@@ -98,7 +98,7 @@ const Charts = () => {
       wickUpColor: "#838ca1",
       priceLineVisible: false,
     })
-    candleSeries.setData(priceData)
+    // candleSeries.setData(priceData)
 
     // const areaSeries = chart.current.addAreaSeries({
     //   topColor: 'rgba(38,198,218, 0.56)',
@@ -120,7 +120,7 @@ const Charts = () => {
         bottom: 0
       }
     })
-    volumeSeries.setData(volumeData)
+    // volumeSeries.setData(volumeData)
   }, [])
 
 
