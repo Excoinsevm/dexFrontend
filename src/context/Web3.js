@@ -231,7 +231,7 @@ class Dex {
   async loadTokensQuotesContracts() {
     await this.#_execLockProtectedAction(Dex.Action.LOAD_TOKENS_QUOTES_CONTRACTS, async () => {
       const _tokens = await this.dexContract.getTokens()
-      console.log('tokens', _tokens)
+      // console.log('tokens', _tokens)
       const _quotes = await this.dexContract.getQuotes()
       const _tokenNames = ['ETH', ..._tokens.map(t => fromB32Str(t.ticker))]
       const _contracts = _tokens.reduce((acc, t) => ({
@@ -557,6 +557,7 @@ class Dex {
       )
       if (excuted && this._fetchTradeScheduleArgs.base && this._fetchTradeCallback) {
         const trades = this.state.marketTrades[`${base}-${quote}`]
+        // console.log(`trades for ${base}-${quote}`, trades.at(-1))
         this._fetchTradeCallback(trades.length > 0 ? trades.at(-1).tradeId : '0')
       }
     }

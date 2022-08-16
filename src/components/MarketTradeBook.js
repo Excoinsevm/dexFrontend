@@ -29,9 +29,10 @@ const MarketTradeBook = ({ tradePair, base, quote }) => {
   }, [tradePair])
 
   useEffect(() => {
-    if (recentTradeId > 0) {
+    if (recentTradeId >= 0) {
       // console.log('trades', recentTradeId, getMarketTrades(base, quote))
       const _trades = getMarketTrades(base, quote)
+      // console.log('trade', _trades)
       setTrades(_trades)
       if (currentAccount) {
         const currentAccountTrades = _trades.filter(trade =>
