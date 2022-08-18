@@ -5,7 +5,8 @@ import { useWeb3Context } from '../context/Web3Context'
 import { useNavigate } from 'react-router-dom'
 import TabTable from './TabTable'
 import { FaStar as StarIcon } from 'react-icons/fa'
-import LoadingOverlayer from './LoadingOverlayer'
+// import LoadingOverlayer from './LoadingOverlayer'
+import ResourceResponse from '../components/ResourceResponse'
 
 const MarketQuotes = () => {
 
@@ -23,6 +24,7 @@ const MarketQuotes = () => {
   // } = web3Methods()
 
   // ------ state data
+  const [resStatus, setResStatus] = useState('loading')
   const [raw, setRaw] = useState({ brief: {} })
   const [data, setData] = useState(false)
   useEffect(() => {
@@ -34,6 +36,7 @@ const MarketQuotes = () => {
     if (Object.keys(raw.brief).length > 0) {
       // console.log('----------------', raw.brief)
       setData(raw.brief)
+      setResStatus('ready')
     }
   }, [raw])
 
@@ -138,7 +141,7 @@ const MarketQuotes = () => {
     searchInput: 'border-2 rounded-lg w-52 pl-10 p-2 pr-0',
   }
 
-  return (
+  if (resStatus === 'ready') return (
     <div className='w-full max-w-screen-2xl overflow-x-auto rounded-xl shadow-md'>
       <TabTable
         config={tableConfig}
@@ -149,8 +152,10 @@ const MarketQuotes = () => {
         clickRow={clickRow}
         searchCol={'pair'}
       />
-      <LoadingOverlayer open={!data} portal />
     </div>
+  )
+  else return (
+    <ResourceResponse resName={'Market '} status={resStatus} />
   )
 }
 
