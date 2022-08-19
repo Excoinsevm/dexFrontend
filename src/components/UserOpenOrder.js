@@ -9,6 +9,8 @@ import WalletConnectReminder from './WalletConnectReminder'
 // import { web3Methods } from '../context/Web3'
 import { useWeb3Context } from '../context/Web3Context'
 import TradeOrderModal from './TradeOrderModal'
+import ResourceResponse from '../components/ResourceResponse'
+
 
 const UserOpenOrder = ({ tradePair, base, quote, hideOthers }) => {
 
@@ -50,6 +52,7 @@ const UserOpenOrder = ({ tradePair, base, quote, hideOthers }) => {
   const {
     connect,
     currentAccount,
+    allOrdersLoadStatus,
     currentAccountOrdersChanged,
     filterCurrentAccountAllOrders,
     cancelOrder
@@ -178,7 +181,7 @@ const UserOpenOrder = ({ tradePair, base, quote, hideOthers }) => {
     )
   }
 
-  return (
+  if (allOrdersLoadStatus === 'ready' || allOrdersLoadStatus === 'init') return (
     <div className='w-full'>
       {/* {debug()} */}
       <Table
@@ -190,6 +193,9 @@ const UserOpenOrder = ({ tradePair, base, quote, hideOthers }) => {
       />
       {order && <TradeOrderModal order={order} openct={modalOpenCount} />}
     </div>
+  )
+  else return (
+    <ResourceResponse resName={'User data '} status={allOrdersLoadStatus} style='mt-2' iconSize='w-16 h-16' />
   )
 }
 

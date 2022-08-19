@@ -148,10 +148,13 @@ class Dex {
       tokens: [],
       quotes: [],
       contracts: false,
+      balanceLoadStatus: 'init',
       balance: false,
+      allOrdersLoadStatus: 'init',
       marketOrders: {},
       currentAccountOrders: {},
       currentAccountOrdersChanged: 0,
+      allTradesLoadStatus: 'init',
       currentAccountTrades: {},
       currentAccountTradesChanged: 0,
       marketTrades: {},
@@ -334,6 +337,7 @@ class Dex {
 
   loadCurrentAccountBalance = async () => {
     if (this.state.currentAccount && this.state.contracts) {
+      this.setState({ ...this.state, balanceLoadStatus: 'loading' })
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       let _balance = {
         ETH:
@@ -352,7 +356,7 @@ class Dex {
         ])
       }
       // console.log('balance --->', _balance)
-      this.setState({ ...this.state, balance: _balance })
+      this.setState({ ...this.state, balance: _balance, balanceLoadStatus: 'ready' })
     }
   }
 
@@ -469,6 +473,7 @@ class Dex {
   }
 
   fetchAllMarketOrders = async () => {
+    this.setState({ ...this.state, allOrdersLoadStatus: 'loading' })
     const SIDE = { BUY: 0, SELL: 1 };
     let orders = {}
     for (const q of this.state.quotes) {
@@ -493,7 +498,8 @@ class Dex {
     this.setState({
       ...this.state,
       // currentAccountOrders: orders,
-      currentAccountOrdersChanged: this.state.currentAccountOrdersChanged + 1
+      currentAccountOrdersChanged: this.state.currentAccountOrdersChanged + 1,
+      allOrdersLoadStatus: 'ready'
     })
     // this.setState({ ...this.state, marketOrders: orders })
   }
@@ -636,6 +642,7 @@ class Dex {
   }
 
   fetchAllMarketTrades = async () => {
+    this.setState({ ...this.state, allTradesLoadStatus: 'loading' })
     let marketTrades = {}
     let marketTradeQuoteColBrief = {}
     for (const quote of this.state.quotes) {
@@ -661,7 +668,8 @@ class Dex {
     this.setState({
       ...this.state,
       // currentAccountOrders: orders,
-      currentAccountTradesChanged: this.state.currentAccountTradesChanged + 1
+      currentAccountTradesChanged: this.state.currentAccountTradesChanged + 1,
+      allTradesLoadStatus: 'ready'
     })
   }
 

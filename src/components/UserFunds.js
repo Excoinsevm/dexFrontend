@@ -5,6 +5,7 @@ import { useWeb3Context } from '../context/Web3Context'
 import Table from './Table'
 import DepositWithdrawModal from './DepositWithdrawModal'
 import WalletConnectReminder from './WalletConnectReminder'
+import ResourceResponse from '../components/ResourceResponse'
 
 
 const UserFunds = ({ base, quote, hideSmall, hideOthers }) => {
@@ -15,6 +16,7 @@ const UserFunds = ({ base, quote, hideSmall, hideOthers }) => {
     currentAccount,
     tokens,
     balance,
+    balanceLoadStatus,
   } = useWeb3Context()
 
   // ------ test data
@@ -118,7 +120,7 @@ const UserFunds = ({ base, quote, hideSmall, hideOthers }) => {
     )
   }
 
-  return (
+  if (balanceLoadStatus === 'ready' || balanceLoadStatus === 'init') return (
     <div className='w-full'>
       <Table
         config={tableConfig}
@@ -129,6 +131,9 @@ const UserFunds = ({ base, quote, hideSmall, hideOthers }) => {
       />
       {DW && <DepositWithdrawModal type={DW.type} token={DW.token} openct={DWOpenCount} />}
     </div>
+  )
+  else return (
+    <ResourceResponse resName={'User data '} status={balanceLoadStatus} style='mt-2' iconSize='w-16 h-16' />
   )
 }
 
