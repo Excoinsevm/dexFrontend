@@ -129,7 +129,7 @@ const UserOpenOrder = ({ tradePair, base, quote, hideOthers }) => {
       },
       { label: 'Price', header: 'sort', key: 'p', val: (row) => floatStr(row.p), thCell: common, tdCell: () => common },
       { label: 'Quantity', header: 'sort', key: 'q', val: (row) => floatStr(row.q), thCell: common, tdCell: () => common },
-      { label: 'Filled', header: 'sort', key: 'f', val: (row) => floatStr(row.f * 100) + '%', thCell: common, tdCell: () => common },
+      { label: 'Filled', header: 'sort', key: 'f', val: (row) => floatStr(row.f / row.q * 100) + '%', thCell: common, tdCell: () => common },
       {
         label: 'Total', header: 'sort', key: 'total', val: (row) => floatStr(row.p * row.q) + ' ' + row.quote,
         thCell: common,
