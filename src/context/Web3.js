@@ -633,7 +633,11 @@ class Dex {
         const filtered = this.state.marketTrades[key].filter(trade =>
           trade.seller === this.state.currentAccount || trade.buyer === this.state.currentAccount
         )
-        trades = trades.concat(filtered)
+        const sideRevised = filtered.map(trade => ({
+          ...trade,
+          side: trade.buyer === this.state.currentAccount ? 'BUY' : 'SELL'
+        }))
+        trades = trades.concat(sideRevised)
       }
       trades = trades.sort((a, b) => b.date - a.date)
       this.state.currentAccountTrades = trades
