@@ -36,7 +36,7 @@ const MarketOrderBook = ({ tradePair, base, quote }) => {
     fiatValue: '--',
   }
   const [tradeBrief, setTradeBrief] = useState(tradeBriefInit)
-  const [recentTradePair, setRecentTradePair] = useState(false)
+  const recentTradePair = useRef(false)
   // console.log('-------->', tradePair, ordersUID)
 
   useEffect(() => {
@@ -48,9 +48,10 @@ const MarketOrderBook = ({ tradePair, base, quote }) => {
           ...tradeBrief, ...b,
           fiatValue: b.price !== '--' ? b.price * fiatValueOfUSDT : '--',
         }
-        if (recentTradePair !== tradePair) {
+        if (recentTradePair.current !== tradePair) {
+          // console.log('-------->', tradePair, recentTradePair, _brief.price)
           updateContextPriceValue(_brief.price !== '--' ? _brief.price : 0)
-          setRecentTradePair(tradePair)
+          recentTradePair.current = tradePair
         }
         setTradeBrief(_brief)
       }
