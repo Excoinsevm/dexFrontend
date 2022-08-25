@@ -57,9 +57,10 @@ const MarketOrderBook = ({ tradePair, base, quote }) => {
       }
     }
 
-    scheduleMarketOrdersFetch(base, quote, setOrdersUID)
+    scheduleMarketOrdersFetch(base, quote, setOrdersUID, 2000)
 
     func()
+    if (ordersUID) genDisplayCache(priceScale)
     const interval = setInterval(func, 1000)
 
     return () => {
@@ -340,7 +341,7 @@ const MarketOrderBook = ({ tradePair, base, quote }) => {
     const { price, prePrice } = data
     const color = price > prePrice ? 'text-c-bullish-weak' : price < prePrice ? 'text-c-bearish-weak' : 'text-c-neutral'
     const arrowRotate = price > prePrice ? '' : 'rotate-180'
-    const arrowHidden = price === prePrice ? 'hidden' : ''
+    const arrowHidden = (prePrice === '--' || price === prePrice) ? 'hidden' : ''
     return (
       <div className='flex flex-row flex-nowrap justify-start items-center text-xl ml-2 my-1.5 px-2'>
         <div className={`${color} pr-1`}>{floatStr(price)}</div>
