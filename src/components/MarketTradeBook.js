@@ -13,12 +13,16 @@ const MarketTradeBook = ({ tradePair, base, quote }) => {
     currentAccount,
     scheduleMarketTradesFetch,
     cancelMarketTradesFetchSchedule,
-    getMarketTrades
+    getMarketTrades,
+    tradePairDisplayDecimal
   } = useWeb3Context()
 
 
   // ------ internal data
-  const [pDecimals, qDecimals] = [2, 4]
+  const [pDecimals, qDecimals] = [
+    tradePairDisplayDecimal(base, quote).quoteDecimal,
+    tradePairDisplayDecimal(base, quote).baseDecimal
+  ]
   const [trades, setTrades] = useState([])
   const [currentAccountTrades, setCurrentAccountTrades] = useState([])
   const [recentTradeId, setRecentTradeId] = useState(-1)

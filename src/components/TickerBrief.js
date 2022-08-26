@@ -8,6 +8,7 @@ const TickerBrief = ({ tradePair, base, quote }) => {
 
   const {
     getMarketTradePairBrief,
+    tradePairDisplayDecimal
   } = web3Methods()
 
   const tokenInfo = {
@@ -27,7 +28,7 @@ const TickerBrief = ({ tradePair, base, quote }) => {
 
   const fiatValueOfUSDT = 0.99
   const dataInit = {
-    precision: 4,
+    ...tradePairDisplayDecimal(base, quote),
     fiatSymbol: '$',
     base: base,
     quote: quote,

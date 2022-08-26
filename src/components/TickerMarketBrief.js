@@ -5,8 +5,8 @@ const TickerMarketBrief = ({ data }) => {
 
   const columns = [
     {
-      label: (v) => floatStr(v.price, v.precision),
-      value: (v) => v.fiatSymbol + floatStr(v.fiatValue)
+      label: (v) => floatStr(v.price, v.quoteDecimal),
+      value: (v) => v.fiatSymbol + floatStr(v.fiatValue, v.fiatDecimal)
     },
     {
       label: () => '24h Change',
@@ -14,19 +14,19 @@ const TickerMarketBrief = ({ data }) => {
     },
     {
       label: () => '24h High',
-      value: (v) => floatStr(v.high24h, v.precision)
+      value: (v) => floatStr(v.high24h, v.quoteDecimal)
     },
     {
       label: () => '24h Low',
-      value: (v) => floatStr(v.low24h, v.precision)
+      value: (v) => floatStr(v.low24h, v.quoteDecimal)
     },
     {
       label: (v) => '24h Vol (' + v.base + ')',
-      value: (v) => floatStr(v.volume24h)
+      value: (v) => floatStr(v.volume24h, v.baseDecimal)
     },
     {
       label: (v) => '24h Vol (' + v.quote + ')',
-      value: (v) => floatStr(v.total24h)
+      value: (v) => floatStr(v.total24h, v.quoteDecimal)
     }
   ]
 
@@ -52,7 +52,7 @@ const TickerMarketBrief = ({ data }) => {
       {
         columns.map(({ label, value }, index) => {
           if (index === 0) return (
-            <div className='grid grid-rows-2 justify-items-start place-items-center' key={index}>
+            <div className='grid grid-rows-2 justify-items-start place-items-center pr-6' key={index}>
               <div className={'text-md font-bold' + changeColor(data.price - data.prePrice)}>{label(data)}</div>
               <div className='text-xs text-c-major'>{value(data)}</div>
             </div>

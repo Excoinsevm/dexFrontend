@@ -14,7 +14,8 @@ const MarketQuotesMini = () => {
     scheduleAllMarketTradesFetch,
     cancelAllMarketTradesFetchSchedule,
     favTickers,
-    updateFavTickers
+    updateFavTickers,
+    tradePairDisplayDecimal
   } = useWeb3Context()
   // const {
   //   scheduleAllMarketTradesFetch,
@@ -86,7 +87,7 @@ const MarketQuotesMini = () => {
       },
       {
         label: 'Price', header: 'sort', key: 'price',
-        val: (row) => floatStr(row.price),
+        val: (row) => floatStr(row.price, tradePairDisplayDecimal(row.base, row.quote).quoteDecimal),
         thCell: commonTH + 'text-right w-[30%]',
         tdCell: (row) => commonTD + 'text-right w-[30%] ' + changeColor(row.dir),
         cellFlex: 'flex justify-end',

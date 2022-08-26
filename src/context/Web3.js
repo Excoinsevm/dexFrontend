@@ -4,6 +4,7 @@ import detectEthereumProvider from '@metamask/detect-provider'
 import { ethers } from 'ethers'
 // import { datetimeStr } from '../common/Utils'
 import { useState } from 'react'
+import { tokenBalanceDecimal, tradePairDisplayDecimal } from './DisplayDecimals'
 
 // --------------------------------------------------------------------------------
 // ------------  helper functions
@@ -1130,6 +1131,8 @@ export function web3Methods() {
       }
       return waited > waitTimeout ? false : [dex.state.quotes, dex.state.tokens]
     },
+    tokenBalanceDecimal: tokenBalanceDecimal,
+    tradePairDisplayDecimal: tradePairDisplayDecimal
   }
 }
 

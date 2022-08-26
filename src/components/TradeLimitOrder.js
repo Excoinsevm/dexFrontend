@@ -3,8 +3,11 @@ import RangeSlider from './RangeSlider'
 import ValueInput from './ValueInput'
 import TradeOrderButton from './TradeOrderButton'
 import { floatStr } from '../common/Utils'
+import { web3Methods } from '../context/Web3'
 
 const TradeLimitOrder = ({ side, base, quote, fundAvbl, price, onOrderSubmit }) => {
+
+  const { tokenBalanceDecimal } = web3Methods()
 
   const [inputValue, setInputValue] = useState({ p: '', q: '', t: '' })
   const [inputMsg, setInputMsg] = useState({ p: '', q: '', t: '' })
@@ -63,10 +66,14 @@ const TradeLimitOrder = ({ side, base, quote, fundAvbl, price, onOrderSubmit }) 
     else { updateValue('q', v, v) }
   }
 
+  const avlbFundStr = () => (side.toUpperCase() === 'BUY') ?
+    floatStr(fundAvbl, tokenBalanceDecimal(quote)) + ' ' + quote :
+    floatStr(fundAvbl, tokenBalanceDecimal(base)) + ' ' + base
+
   const availableFund = () => (
     <div className='flex flex-row justify-between items-center w-full px-3 mb-1 text-xs text-c-minor select-none'>
       <span>Available</span>
-      <span className='text-c-major2'>{floatStr(fundAvbl)} {side.toUpperCase() === 'BUY' ? quote : base}</span>
+      <span className='text-c-major2'>{avlbFundStr()}</span>
     </div>
   )
 

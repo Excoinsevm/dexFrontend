@@ -16,7 +16,8 @@ const MarketQuotes = () => {
     scheduleAllMarketTradesFetch,
     cancelAllMarketTradesFetchSchedule,
     favTickers,
-    updateFavTickers
+    updateFavTickers,
+    tradePairDisplayDecimal
   } = useWeb3Context()
   // const {
   //   scheduleAllMarketTradesFetch,
@@ -91,7 +92,7 @@ const MarketQuotes = () => {
       },
       {
         label: 'Price', header: 'sort', key: 'price',
-        val: (row) => floatStr(row.price),
+        val: (row) => floatStr(row.price, tradePairDisplayDecimal(row.base, row.quote).quoteDecimal),
         thCell: commonTH,
         tdCell: (row) => commonTD + ' ' + changeColor(row.dir),
         cellFlex: commonContentFlex
@@ -105,21 +106,22 @@ const MarketQuotes = () => {
       },
       {
         label: '24h High / Low', header: 'plain', key: '',
-        val: (row) => floatStr(row.high24h) + ' / ' + floatStr(row.low24h),
+        val: (row) => floatStr(row.high24h, tradePairDisplayDecimal(row.base, row.quote).quoteDecimal) + ' / '
+          + floatStr(row.low24h, tradePairDisplayDecimal(row.base, row.quote).quoteDecimal),
         thCell: commonTH + 'hidden sm:block',
         tdCell: (row) => commonTD + 'hidden sm:block',
         cellFlex: commonContentFlex
       },
       {
         label: '24h Volume', header: 'sort', key: 'volume24h',
-        val: (row) => floatStr(row.volume24h),
+        val: (row) => floatStr(row.volume24h, tradePairDisplayDecimal(row.base, row.quote).baseDecimal),
         thCell: commonTH + 'hidden md:block',
         tdCell: (row) => commonTD + 'hidden md:block',
         cellFlex: commonContentFlex
       },
       {
         label: '24h Total', header: 'sort', key: 'total24h',
-        val: (row) => floatStr(row.total24h),
+        val: (row) => floatStr(row.total24h, tradePairDisplayDecimal(row.base, row.quote).quoteDecimal),
         thCell: commonTH + 'hidden lg:block',
         tdCell: (row) => commonTD + 'hidden lg:block',
         cellFlex: commonContentFlex

@@ -18,7 +18,8 @@ const MarketOrderBook = ({ tradePair, base, quote }) => {
     cancelMarketOrdersFetchSchedule,
     markCurrentAccountOrders,
     getMarketOrders,
-    getMarketTradePairBrief
+    getMarketTradePairBrief,
+    tradePairDisplayDecimal
   } = useWeb3Context()
   // const {
   //   scheduleMarketOrdersFetch,
@@ -81,12 +82,13 @@ const MarketOrderBook = ({ tradePair, base, quote }) => {
   const [activeTab, setActiveTab] = useState('both')
 
   // ------ price display
-  const priceScales = ['10', '1', '0.1', '0.01', '0.001', '0.0001', '0.00001', '0.000001']
+  const tpd = tradePairDisplayDecimal(base, quote)
+  const priceScales = tpd.scaleList
   const priceDecimals = priceScales.map((d) => { if (d >= 1) return 0; else return Math.log10(1 / d) })
   const [priceScale, setPriceScale] = useState('0.01')
 
   // ------ order table pane display
-  const [displayDecimals, setDisplayDecimals] = useState({ p: 2, q: 2, t: 4 })
+  const [displayDecimals, setDisplayDecimals] = useState({ p: tpd.quoteDecimal, q: tpd.baseDecimal, t: tpd.quoteDecimal })
   const [orderDisplayCache, setOrderDisplayCache] = useState({ bids: [], asks: [] })
   const [maxQty, setMaxQty] = useState({ bids: 1, asks: 1 })
 

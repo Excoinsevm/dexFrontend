@@ -17,6 +17,7 @@ const UserFunds = ({ base, quote, hideSmall, hideOthers }) => {
     tokens,
     balance,
     balanceLoadStatus,
+    tokenBalanceDecimal
   } = useWeb3Context()
 
   // ------ test data
@@ -60,6 +61,7 @@ const UserFunds = ({ base, quote, hideSmall, hideOthers }) => {
   }, [balance, hideSmall, hideOthers])
 
   // ------ column definition
+  const bd = tokenBalanceDecimal
   const [filter, setFilter] = useState(false)
   const [hoverRowIdx, setHoverRowIdx] = useState(-1)
   const [DW, setDW] = useState(false)
@@ -81,12 +83,12 @@ const UserFunds = ({ base, quote, hideSmall, hideOthers }) => {
         </div>),
         thCell: common, tdCell: () => common
       },
-      { label: 'Wallet balance', header: 'sort', key: 'wb', val: (row) => floatStr(row.wb), thCell: common, tdCell: () => common },
-      { label: 'Dex balance', header: 'sort', key: 'tb', val: (row) => floatStr(row.tb), thCell: common, tdCell: () => common },
-      { label: 'Available', header: 'sort', key: 'ab', val: (row) => floatStr(row.ab), thCell: common, tdCell: () => common },
-      { label: 'In order', header: 'sort', key: 'io', val: (row) => floatStr(row.io), thCell: common, tdCell: () => common },
+      { label: 'Wallet balance', header: 'sort', key: 'wb', val: (row) => floatStr(row.wb, bd(row.token)), thCell: common, tdCell: () => common },
+      { label: 'Dex balance', header: 'sort', key: 'tb', val: (row) => floatStr(row.tb, bd(row.token)), thCell: common, tdCell: () => common },
+      { label: 'Available', header: 'sort', key: 'ab', val: (row) => floatStr(row.ab, bd(row.token)), thCell: common, tdCell: () => common },
+      { label: 'In order', header: 'sort', key: 'io', val: (row) => floatStr(row.io, bd(row.token)), thCell: common, tdCell: () => common },
       {
-        label: 'Worth value', header: 'sort', key: 'worth', val: (row) => floatStr(row.tb * tokenPrice(row.token)),
+        label: 'Worth value (Dex)', header: 'sort', key: 'worth', val: (row) => floatStr(row.tb * tokenPrice(row.token)),
         thCell: common, tdCell: () => common
       },
       {

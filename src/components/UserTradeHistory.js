@@ -13,7 +13,8 @@ const UserTradeHistory = ({ tradePair, base, quote, hideOthers }) => {
     connect,
     currentAccount,
     currentAccountTradesChanged,
-    filterCurrentAccountAllTrades
+    filterCurrentAccountAllTrades,
+    tradePairDisplayDecimal
   } = useWeb3Context()
 
   // ------ state data
@@ -34,6 +35,7 @@ const UserTradeHistory = ({ tradePair, base, quote, hideOthers }) => {
   }, [hideOthers, tradePair, currentAccount, currentAccountTradesChanged])
 
   // ------ column definition
+  const tpd = tradePairDisplayDecimal(base, quote)
   const [filter, setFilter] = useState(false)
   const [hoverRowIdx, setHoverRowIdx] = useState(-1)
 
@@ -68,15 +70,15 @@ const UserTradeHistory = ({ tradePair, base, quote, hideOthers }) => {
         label: 'Side', header: 'com', key: 'side', val: (row) => row.side.toUpperCase(),
         thCell: common, tdCell: (row) => common + sidecolor(row.side.toUpperCase())
       },
-      { label: 'Price', header: 'sort', key: 'p', val: (row) => floatStr(row.p), thCell: common, tdCell: () => common },
-      { label: 'Quantity', header: 'sort', key: 'q', val: (row) => floatStr(row.q), thCell: common, tdCell: () => common },
+      { label: 'Price', header: 'sort', key: 'p', val: (row) => floatStr(row.p, tpd.quoteDecimal), thCell: common, tdCell: () => common },
+      { label: 'Quantity', header: 'sort', key: 'q', val: (row) => floatStr(row.q, tpd.baseDecimal), thCell: common, tdCell: () => common },
       {
-        label: 'Total', header: 'sort', key: 'total', val: (row) => floatStr(row.p * row.q) + ' ' + row.quote,
+        label: 'Total', header: 'sort', key: 'total', val: (row) => floatStr(row.p * row.q, tpd.quoteDecimal) + ' ' + row.quote,
         thCell: common,
         tdCell: () => common
       },
-      { label: 'Trade', header: 'sort', key: 'tradeId', val: (row) => row.tradeId, thCell: common, tdCell: () => common },
-      { label: 'Order', header: 'sort', key: 'orderId', val: (row) => row.orderId, thCell: common, tdCell: () => common },
+      { label: 'Trade Id', header: 'sort', key: 'tradeId', val: (row) => row.tradeId, thCell: common, tdCell: () => common },
+      { label: 'Order Id', header: 'sort', key: 'orderId', val: (row) => row.orderId, thCell: common, tdCell: () => common },
     ],
     columnHeaderComs: {
       'side': () => (
