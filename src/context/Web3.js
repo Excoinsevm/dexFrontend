@@ -433,8 +433,10 @@ class Dex {
     if (this.state.marketOrders) {
       const pair = `${base}-${quote}`
       const orders = this.state.marketOrders[pair]
-      orders.b.forEach(o => o.m = (o.trader === this.state.currentAccount) ? 100 : 0)
-      orders.s.forEach(o => o.m = (o.trader === this.state.currentAccount) ? 100 : 0)
+      if (orders) {
+        orders.b.forEach(o => o.m = (o.trader === this.state.currentAccount) ? 100 : 0)
+        orders.s.forEach(o => o.m = (o.trader === this.state.currentAccount) ? 100 : 0)
+      }
       // console.log(`marked orders for ${pair} --->`, orders)
       // this.state.currentAccountOrders[pair] = orders
       // this.setState({ ...this.state, currentAccountOrders: orders })
