@@ -39,10 +39,14 @@ const MarketTradeBook = ({ tradePair, base, quote }) => {
       // console.log('trade', _trades)
       setTrades(_trades)
       if (currentAccount) {
-        const currentAccountTrades = _trades.filter(trade =>
+        const filtered = _trades.filter(trade =>
           trade.seller === currentAccount || trade.buyer === currentAccount
         )
-        setCurrentAccountTrades(currentAccountTrades)
+        const sideRevised = filtered.map(trade => ({
+          ...trade,
+          side: trade.buyer === currentAccount ? 'BUY' : 'SELL'
+        }))
+        setCurrentAccountTrades(sideRevised)
       } else {
         setCurrentAccountTrades([])
       }
