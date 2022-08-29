@@ -346,7 +346,7 @@ const MarketOrderBook = ({ tradePair, base, quote }) => {
     const arrowHidden = (prePrice === '--' || price === prePrice) ? 'hidden' : ''
     return (
       <div className='flex flex-row flex-nowrap justify-start items-center text-xl ml-2 my-1.5 px-2'>
-        <div className={`${color} pr-1`}>{floatStr(price)}</div>
+        <div className={`${color} pr-1`}>{floatStr(price, displayDecimals.p)}</div>
         <ArrowUp className={`${color} h-5 w-5 mt-0.5 ${arrowRotate} ${arrowHidden}`} />
         <div className='pl-4 text-c-minor text-xs'>${floatStr(data.fiatValue)}</div>
       </div>
