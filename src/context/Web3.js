@@ -1,4 +1,6 @@
-import dexjson from '../contracts/Dex.json'
+// import dexjson from '../contracts/Dex.json'
+import dexjson_goerli from '../contracts/goerli/Dex.json'
+import dexjson_arbitrum from '../contracts/arbitrum_goerli/Dex.json'
 import erc20json from '../contracts/ERC20Abi.json'
 import detectEthereumProvider from '@metamask/detect-provider'
 import { ethers } from 'ethers'
@@ -24,6 +26,19 @@ const getDexContract = () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const address = readOnlyAddress
     const signer = new ethers.VoidSigner(address, provider)
+    const chainId = ('chainId' in localStorage) ? localStorage['chainId'] : '421613'
+    // console.log('chain id:', chainId)
+    let dexjson = null
+    if (chainId === '421613') { // Arbitrum Goerli chain
+      dexjson = dexjson_arbitrum
+    }
+    else if (chainId === '5') { // Goerli chain
+      dexjson = dexjson_goerli
+    }
+    else {
+      console.error('chain not supported! contract only deployed on Goerli testnet and Arbitrum Goerli testnet')
+      return null
+    }
     const contract = new ethers.Contract(dexjson.address, dexjson.abi, signer)
     return contract
   } else {
@@ -87,6 +102,8 @@ class Wallet {
         const accounts = await provider.request({ method: 'eth_accounts' })
         this.#_updateWalletAccounts(accounts)
         provider.on('accountsChanged', this.#_updateWalletAccounts)
+        const chainId = await provider.request({ method: 'eth_chainId' })
+        localStorage['chainId'] = parseInt(chainId, 16)
       }
     })
   }
@@ -992,7 +1009,7 @@ class Dex {
     try {
       // const signer = new ethers.VoidSigner(readOnlyAddress, dexContract.provider)
       // const tokenContract = new ethers.Contract(tokenAddress, erc20json.abi, signer)
-      const tokenContract = new ethers.Contract(tokenAddress, erc20json.abi, dexContract.provider)
+      const tokenContract = new ethers.Contract(tokenAddress, erc20json.abi, this.dexContract.provider)
       const symbol = await tokenContract.symbol()
       return symbol
     } catch (e) {
