@@ -117,7 +117,7 @@ const MarketTradeBook = ({ tradePair, base, quote }) => {
   }
 
   return (
-    <div className='flex flex-col justify-start w-full h-full'>
+    <div className='flex flex-col justify-start w-full h-[470px]'>
       {tab()}
       {header()}
       <div className='h-full overflow-y-auto'>

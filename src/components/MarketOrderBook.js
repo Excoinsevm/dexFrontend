@@ -289,7 +289,7 @@ const MarketOrderBook = ({ tradePair, base, quote }) => {
 
   const sideTable = (list, side) => {
     const widthPercent = (v, side) => v * 100 / maxQty[side].q + '%'
-    const hSize = (activeTab === 'both') ? 'h-[350px]' : 'h-[700px]'
+    const hSize = (activeTab === 'both') ? 'h-[360px]' : 'h-[720px]'
     const tColor = side === 'asks' ? 'text-c-bearish' : 'text-c-bullish'
     const bColor = side === 'asks' ? 'bg-c-bearish' : 'bg-c-bullish'
     const hoverBdr = side === 'asks' ? 'hover:border-t border-dashed' : 'hover:border-b border-dashed'
@@ -309,7 +309,7 @@ const MarketOrderBook = ({ tradePair, base, quote }) => {
     }
 
     return (
-      <div className={`flex ${side === 'asks' ? 'flex-col-reverse' : 'flex-col'} ${hSize}`}>
+      <div className={`flex overflow-y-scroll ${side === 'asks' ? 'flex-col-reverse' : 'flex-col'} ${hSize}`}>
         <div className={`flex ${side === 'asks' ? 'flex-col-reverse' : 'flex-col'} text-c-major2 w-full`}
           onPointerLeave={() => updateHoverIndex(side, -1)}>
           {list.map((order, index) => (
