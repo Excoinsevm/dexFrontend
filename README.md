@@ -1,7 +1,7 @@
 # Dex UI
 This frontend is trying to achieve the trading UI of prevailing cryptocurrency exchanges. 
 
-<img src="https://github.com/sushenghua/dexFrontend/blob/master/Doc/img/img1.jpg" width="1200">
+<img src="https://github.com/sushenghua/dexFrontend/doc/blob/master/Doc/img/trade_screen.jpg" width="1200">
 
 #### Functionalities supported:
 - assets deposit/withdraw
@@ -13,7 +13,7 @@ This frontend is trying to achieve the trading UI of prevailing cryptocurrency e
 
 #### Functionalities not finished:
 - trade history graph (most exchanges have Tradingview plugin embedded)
-- Token Analytics (mainly statistics presentation, such as correlation heatmap, portfolio Sharpe ratio, etc.)
+- Token Analytics (mainly statistics presentation, such as correlation heatmap, portfolio sharpe ratio, etc.)
 
 #### Demo site at https://sunny-brioche-eb6cdd.netlify.app
 
