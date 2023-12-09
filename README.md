@@ -1,7 +1,7 @@
 # Dex UI
 This frontend is trying to achieve the trading UI of prevailing cryptocurrency exchanges. 
 
-<img src="https://github.com/sushenghua/dexFrontend/doc/blob/master/Doc/img/trade_screen.jpg" width="1200">
+<img src="doc/img/trade_screen.jpg" width="1200">
 
 #### Functionalities supported:
 - assets deposit/withdraw
