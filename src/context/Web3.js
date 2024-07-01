@@ -20,7 +20,7 @@ const fromBG = (num) => Number(ethers.utils.formatUnits(num.toString(), "gwei"))
 
 // --------------------------------------------------------------------------------
 // ------------  dex contract
-const readOnlyAddress = "0x8ba1f109551bD432803012645Ac136ddd64DBA72"
+const readOnlyAddress = "0xbfbe13f2bbc1ADF5Fd8c36D85ffca2032c285421"
 const getDexContract = () => {
   if (typeof window.ethereum !== 'undefined' || typeof window.web3 !== 'undefined') {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -29,7 +29,7 @@ const getDexContract = () => {
     const chainId = ('chainId' in localStorage) ? localStorage['chainId'] : '421613'
     // console.log('chain id:', chainId)
     let dexjson = null
-    if (chainId === '421613') { // Arbitrum Goerli chain
+    if (chainId === '9991') { // Arbitrum Goerli chain
       dexjson = dexjson_arbitrum
     }
     else if (chainId === '5') { // Goerli chain
