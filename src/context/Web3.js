@@ -26,7 +26,7 @@ const getDexContract = () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const address = readOnlyAddress
     const signer = new ethers.VoidSigner(address, provider)
-    const chainId = ('chainId' in localStorage) ? localStorage['chainId'] : '421613'
+    const chainId = ('chainId' in localStorage) ? localStorage['chainId'] : '9991'
     // console.log('chain id:', chainId)
     let dexjson = null
     if (chainId === '9991') { // Arbitrum Goerli chain
